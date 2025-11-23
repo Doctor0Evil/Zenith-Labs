@@ -1,0 +1,3 @@
+function integrate_device_input(device_id, user_signal):
+    # Abstract bridge from device to system logic (IoT, wearables, terminals, etc)
+    route_to_core(device_id, user_signal)
