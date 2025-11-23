@@ -1,0 +1,2 @@
+API_MAIN:
+    route "/donations" -> routes_donations.receive_donation
