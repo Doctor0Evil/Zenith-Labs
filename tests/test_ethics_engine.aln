@@ -1,0 +1,4 @@
+test "excessive profit block":
+    EE = EthicsEngine("../../policies/anti_greed_policy.aln")
+    result, reason = EE.evaluate({profit_margin: 0.5, complaints: 1})
+    assert(result == "REJECTED")
