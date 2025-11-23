@@ -1,0 +1,35 @@
+"""
+[
+"https://nowpayments.io",
+"https://coingate.com",
+"https://bitpay.com",
+"https://cryptomus.com",
+"https://depay.fi",
+"https://coinpayments.net",
+"https://coinbase.com/commerce",
+"https://blockonomics.co",
+"https://gocrypto.com",
+"https://paytomat.com",
+"https://opennode.com",
+"https://shapeshift.com",
+"https://mercadobitcoin.com.br",
+"https://blockchain.com/payments",
+"https://purse.io",
+"https://changelly.com/merchant",
+"https://stripe.com/payments/crypto",
+"https://moonpay.io",
+"https://b2binpay.com",
+"https://unboundfinance.com",
+"https://cointext.io",
+"https://spectrocoin.com",
+"https://paybear.io",
+"https://globee.com",
+"https://paymentwall.com"
+]
+"""
+
+[ integration "payment_urls" ]
+{
+gateway_urls = $popular_payment_gateways
+description = "Curated list of popular crypto payment gateways for AI-chat orchestrated Web5 payments."
+}

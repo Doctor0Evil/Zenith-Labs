@@ -1,0 +1,10 @@
+{
+  "action": "validate_and_connect",
+  "wallet_type": "keplr",
+  "validation_params": {
+    "user_id": "user123",
+    "wallet_address": "cosmos1abcdef1234567890abcdef1234567890abcdef1234",
+    "authorization": "in_prompt_kyc",
+    "scope": "trade_authorization"
+  }
+}

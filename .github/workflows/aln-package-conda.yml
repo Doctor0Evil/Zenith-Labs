@@ -1,0 +1,58 @@
+[ workflow "nanoswarm_ai_crypto_payment" {
+  description: "CI/CD workflow for nanoswarm operations and cryptographic-signed AI-chat data-accumulated crypto payments"
+  on: ["push"]
+
+  jobs: {
+    build_nanoswarm_agent: {
+      runs-on: "ubuntu-latest"
+      strategy: {
+        max-parallel: 5
+      }
+      steps: [
+        { uses: "actions/checkout@v4" },
+        {
+          name: "Set up Python 3.10 environment"
+          uses: "actions/setup-python@v3"
+          with: { "python-version": "3.10" }
+        },
+        {
+          name: "Add conda to PATH"
+          run: "echo $CONDA/bin >> $GITHUB_PATH"
+        },
+        {
+          name: "Install dependencies with Conda"
+          run: "conda env update --file environment.yml --name base"
+        },
+        {
+          name: "Run linter flake8"
+          run: |
+            conda install flake8
+            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        },
+        {
+          name: "Run tests with pytest"
+          run: |
+            conda install pytest
+            pytest
+        }
+      ]
+    },
+
+    deploy_nanoswarm_agent: {
+      needs: ["build_nanoswarm_agent"]
+      runs-on: "ubuntu-latest"
+      steps: [
+        { uses: "actions/checkout@v4" },
+        {
+          name: "Deploy nanoswarm AI agent with cryptographic signatures"
+          run: "./deploy_agent.sh --sign --validate"
+        },
+        {
+          name: "Run integration tests for AI-chat crypto payments"
+          run: "pytest tests/integration --tags nanoswarm"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# AI-Powered Data Analytics Configuration
+# File: data_analytics.aii
+
+(ai_integration
+  (model
+    (name "data_analytics_model")
+    (version "1.0.0")
+    (provider "https://ai.chatcrypto.service")
+    (endpoints
+      (analyze_data "https://ai.chatcrypto.service/analyze")
+      (generate_insights "https://ai.chatcrypto.service/insights")
+    )
+  )
+
+  (data_processing
+    (input_format "json")
+    (output_format "json")
+    (supported_data_types ["structured", "unstructured", "time_series"])
+  )
+
+  (interaction_protocols
+    (rest_api true)
+    (websocket true)
+    (graphql true)
+  )
+)

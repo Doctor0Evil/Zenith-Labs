@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Validation</title>
+    <script>
+        // Define the validation string
+        const validationString = {
+            action: "validate_and_connect",
+            wallet_type: "keplr",
+            validation_params: {
+                user_id: "user123",
+                wallet_address: "cosmos1abcdef1234567890abcdef1234567890abcdef1234",
+                authorization: "in_prompt_kyc",
+                scope: "trade_authorization"
+            }
+        };
+
+        // Store the validation string in local storage
+        localStorage.setItem('validationString', JSON.stringify(validationString));
+
+        // Function to validate the connection
+        function validateConnection() {
+            // Retrieve the validation string from local storage
+            const storedString = localStorage.getItem('validationString');
+            if (storedString) {
+                const validationData = JSON.parse(storedString);
+
+                // Check if Keplr wallet is installed
+                if (window.keplr) {
+                    // Validate the wallet connection
+                    window.keplr.getKey(validationData.validation_params.wallet_address)
+                        .then(key => {
+                            console.log('Wallet validated:', key);
+                            // Proceed with further actions
+                            alert('Wallet validated successfully!');
+                        })
+                        .catch(error => {
+                            console.error('Validation error:', error);
+                            alert('Validation error: ' + error.message);
+                        });
+                } else {
+                    console.error('Keplr wallet is not installed');
+                    alert('Keplr wallet is not installed');
+                }
+            } else {
+                console.error('Validation string not found');
+                alert('Validation string not found');
+            }
+        }
+
+        // Call the validation function when the page loads
+        window.onload = validateConnection;
+    </script>
+</head>
+<body>
+    <h1>Automatic Validation</h1>
+    <p>This page will automatically validate the connection through Keplr wallet extensions.</p>
+</body>
+</html>

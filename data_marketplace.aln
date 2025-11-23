@@ -1,0 +1,30 @@
+# Data Marketplace Configuration
+# File: data_marketplace.aln
+
+(module data_marketplace
+  (rule (list_data
+    (when (data_available)
+    (do
+      (create_listing data_id data_description data_price data_currency)
+      (log_event "Data listed" fields=[data_id, data_description, data_price, data_currency])
+    ))
+  )
+
+  (rule (purchase_data
+    (when (and (data_listed) (user_balance >= data_price))
+    (do
+      (transfer_funds user_id seller_id data_price data_currency)
+      (transfer_data user_id data_id)
+      (log_event "Data purchased" fields=[data_id, user_id, seller_id, data_price, data_currency])
+    ))
+  )
+
+  (rule (reward_user
+    (when (user_activity)
+    (do
+      (calculate_reward user_id activity_type)
+      (transfer_reward user_id reward_amount reward_currency)
+      (log_event "Reward transferred" fields=[user_id, activity_type, reward_amount, reward_currency])
+    ))
+  )
+)
