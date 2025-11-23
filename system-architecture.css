@@ -1,0 +1,21 @@
+/zenith-labs/
+├── src/
+│   ├── core/
+│   │   └── ethics_engine.aln
+│   ├── ai/
+│   │   └── donation_matcher.aln
+│   ├── api/
+│   │   ├── main.aln
+│   │   └── routes_donations.aln
+│   ├── trusted_entity/
+│   │   └── trust_score.aln
+│   └── device_integration/
+│       └── human_ai_bridge.aln
+├── policies/
+│   └── anti_greed_policy.aln
+├── config/
+│   └── env.example.aln
+├── docs/
+│   └── README.md.aln
+└── tests/
+    └── test_ethics_engine.aln
