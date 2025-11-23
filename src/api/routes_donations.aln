@@ -1,0 +1,3 @@
+function receive_donation(entity_profile):
+    decision, reason = EthicsEngine("/zenith-labs/policies/anti_greed_policy.aln").evaluate(entity_profile)
+    return {status: decision, reason: reason}
