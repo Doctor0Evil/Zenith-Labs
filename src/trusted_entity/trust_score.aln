@@ -1,0 +1,6 @@
+function compute_trust_score(entity):
+    score = 100
+    score -= entity.negative_events * 20
+    score -= (entity.profit_margin * 50)
+    if score < 0: score = 0
+    return score
