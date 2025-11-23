@@ -1,0 +1,10 @@
+# ALN Ethics Engine: Evaluates greed/corruption in entity activity
+function EthicsEngine(rule_path):
+    rules = load_rules(rule_path)
+    
+    function evaluate(entity):
+        if entity.profit_margin > rules.max_profit:
+            return "REJECTED", "Excessive profit"
+        if entity.complaints > rules.max_complaints:
+            return "REJECTED", "Too many complaints"
+        return "APPROVED", "Entity is ethical"
