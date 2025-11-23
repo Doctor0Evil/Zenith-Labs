@@ -1,0 +1,7 @@
+# ALN donation matcher selects most in-need beneficiaries
+function match_donation(donation, beneficiaries, policy):
+    sorted = sort_beneficiaries(beneficiaries, policy.priority_weight)
+    return take_top(sorted, donation.quantity)
+    
+function sort_beneficiaries(beneficiaries, weight):
+    return sort_by(beneficiaries, item => item.need * weight)
