@@ -1,0 +1,5 @@
+policy anti_greed_policy:
+    max_profit = 0.20
+    max_complaints = 5
+    auto_block_on_greed = TRUE
+    track_audit_trails = TRUE
